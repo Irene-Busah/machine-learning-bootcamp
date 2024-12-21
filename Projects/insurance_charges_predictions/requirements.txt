@@ -1,0 +1,8 @@
+flask==2.3.2
+numpy==1.23.5
+pandas==1.5.3
+scikit-learn==1.2.2
+pickle5==0.0.11
+streamlit==1.27.0
+requests==2.31.0
+gunicorn==20.1.0
