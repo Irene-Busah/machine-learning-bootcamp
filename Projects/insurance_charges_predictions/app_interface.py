@@ -1,16 +1,26 @@
 import streamlit as st
-import requests
-import matplotlib.pyplot as plt
+import pickle
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-# App Title with Subheader
+# Load the trained model
+@st.cache_resource
+def load_model():
+    with open("insurance_cost_model.pkl", "rb") as file:
+        model = pickle.load(file)
+    return model
+
+model = load_model()
+
+# App Title and Subheader
 st.title("🏥 Healthcare Cost Prediction")
 st.subheader("Predict your medical insurance costs with this simple tool!")
 
-# Add a sidebar for user input explanation
+# Sidebar Info
 st.sidebar.markdown("### About the Tool")
 st.sidebar.markdown(
-    "This tool uses machine learning to estimate healthcare costs based on "
+    "This tool uses a machine learning model to estimate healthcare costs based on "
     "your age, gender, BMI, smoking habits, and region."
 )
 
@@ -36,38 +46,28 @@ with col2:
         help="Select your residential region."
     )
 
-# Map categorical inputs to numbers
+# Map categorical inputs to numerical values
 sex = 1 if sex == "Male" else 0
 smoker = 1 if smoker == "Yes" else 0
 region_mapping = {"Northeast": 0, "Southeast": 1, "Southwest": 2, "Northwest": 3}
 region = region_mapping[region]
 
-# Submit Button and Spinner
-if st.button("💡 Predict Healthcare Costs"):
-    with st.spinner("Fetching your prediction..."):
-        response = requests.post("http://127.0.0.1:8000/predict", json={
-            "age": age, 
-            "sex": sex, 
-            "bmi": bmi, 
-            "children": children, 
-            "smoker": smoker, 
-            "region": region
-        })
+# Prepare input for prediction
+input_data = np.array([[age, sex, bmi, children, smoker, region]])
 
-        if response.status_code == 200:
-            prediction = response.json()
-            cost = prediction['predicted_charges']
-            st.success(f"🎉 Predicted Healthcare Costs: **${cost:.2f}**")
-            
-            # Add prediction to history
-            st.session_state["history"].append(
-                {"Age": age, "Sex": "Male" if sex == 1 else "Female", 
-                 "BMI": bmi, "Children": children, 
-                 "Smoker": "Yes" if smoker == 1 else "No", 
-                 "Region": region, "Predicted Costs": cost}
-            )
-        else:
-            st.error("❌ Something went wrong. Please try again later.")
+# Predict and Show Results
+if st.button("💡 Predict Healthcare Costs"):
+    prediction = model.predict(input_data)
+    cost = prediction[0]
+    st.success(f"🎉 Predicted Healthcare Costs: **${cost:.2f}**")
+
+    # Add prediction to history
+    st.session_state["history"].append(
+        {"Age": age, "Sex": "Male" if sex == 1 else "Female", 
+         "BMI": bmi, "Children": children, 
+         "Smoker": "Yes" if smoker == 1 else "No", 
+         "Region": region, "Predicted Costs": cost}
+    )
 
 # Display Prediction History
 if st.session_state["history"]:
