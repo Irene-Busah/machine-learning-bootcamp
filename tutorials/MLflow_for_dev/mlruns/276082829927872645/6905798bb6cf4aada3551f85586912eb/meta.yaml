@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/STUDSENT/Desktop/machine-learning-bootcamp/tutorials/MLflow_for_dev/testing_mlflow_artifact/6905798bb6cf4aada3551f85586912eb/artifacts
+end_time: 1746891095307
+entry_point_name: ''
+experiment_id: '276082829927872645'
+lifecycle_stage: active
+run_id: 6905798bb6cf4aada3551f85586912eb
+run_name: logging model
+run_uuid: 6905798bb6cf4aada3551f85586912eb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746891061137
+status: 4
+tags: []
+user_id: STUDSENT
