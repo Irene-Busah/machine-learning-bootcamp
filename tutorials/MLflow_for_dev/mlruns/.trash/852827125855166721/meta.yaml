@@ -1,9 +1,0 @@
-artifact_location: file:///C:/Users/STUDSENT/Desktop/machine-learning-bootcamp/tutorials/MLflow_for_dev/testing_mlflow1_artifacts
-creation_time: 1746280922758
-experiment_id: '852827125855166721'
-last_update_time: 1746302405551
-lifecycle_stage: deleted
-name: testing_mlflow
-tags:
-  env: dev
-  version: 1.0.0
