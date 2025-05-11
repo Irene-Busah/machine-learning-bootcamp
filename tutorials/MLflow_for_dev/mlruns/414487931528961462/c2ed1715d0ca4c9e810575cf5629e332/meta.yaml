@@ -1,0 +1,16 @@
+artifact_uri: file:///c:/Users/STUDSENT/Desktop/machine-learning-bootcamp/tutorials/MLflow_for_dev/nested_artifact/c2ed1715d0ca4c9e810575cf5629e332/artifacts
+deleted_time: 1746900609794
+end_time: 1746900363863
+entry_point_name: ''
+experiment_id: '414487931528961462'
+lifecycle_stage: deleted
+run_id: c2ed1715d0ca4c9e810575cf5629e332
+run_name: child1
+run_uuid: c2ed1715d0ca4c9e810575cf5629e332
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746900363194
+status: 3
+tags: []
+user_id: STUDSENT
