@@ -54,6 +54,8 @@ tutorials/MLflow_for_dev/mlruns/
 tutorials/MLflow_for_dev/model_registry/
 tutorials/MLflow_for_dev/testing_mlflow_artifact/
 
+tutorials/full_stack_ML_project/mlruns/
+
 # Translations
 *.mo
 *.pot
